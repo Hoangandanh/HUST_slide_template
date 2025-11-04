@@ -1,0 +1,79 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{HUST} % <-- this matches beamerthemeHUST.sty
+
+% \usepackage[utf8]{vietnam}
+\usepackage[T5]{fontenc}
+% \setmainfont{assets/fonts/LATO-BLACK.TTF}
+
+\newcommand{\placecontent}[4]{%
+  \tikz[remember picture,overlay]
+    \node[anchor=north west]
+      at ([xshift=#1,yshift=-#2]current page.north west)
+      {\parbox{#3}{#4}};
+}
+\definecolor{hustred}{RGB}{190,0,0}
+\definecolor{hustblue}{RGB}{0,0,190}
+
+
+
+\title{Requirement Analysis}
+\author{SoICT — HUST}
+\date{}
+
+\begin{document}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{assets/blue_16x9/theme_hust.pdf}}
+\begin{frame}
+%   \titlepage
+\end{frame}
+}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{assets/blue_16x9/theme.pdf}}
+\begin{frame}
+%   \titlepage
+\end{frame}
+}
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{assets/blue_16x9/onelove.pdf}}
+\begin{frame}
+  % place logo only on this frame
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west] at ($(current page.north west)+(0.6cm,-0.45cm)$) {%
+      \includegraphics[height=0.9cm]{assets/logo/04.png}%
+    };
+  \end{tikzpicture}
+    %----------You can edit here----------
+    \placecontent{0.5cm}{3.2cm}{10cm}{
+        \color{hustred}\bfseries\fontsize{22pt}{26pt}\selectfont
+        PRESENTATION TITLE
+    }
+    \placecontent{0.5cm}{4.8cm}{10cm}{
+        \color{hustred}\fontsize{12pt}{14pt}\selectfont
+        SUBTITLE. SUBTITLE. SUBTITLE.\\
+        SUBTITLE. SUBTITLE.
+    }
+\end{frame}
+}
+
+
+
+\begin{frame}{title}
+%   contents
+\end{frame}
+
+\begin{frame}
+%   contents
+\end{frame}
+
+
+{
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{assets/blue_16x9/theme_hust_oneside.pdf}}
+\begin{frame}
+%   \titlepage
+\end{frame}
+}
+
+\end{document}

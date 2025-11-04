@@ -1,0 +1,80 @@
+\ProvidesPackage{beamerthemeHUST}
+\useinnertheme[shadow=true]{rounded}
+% \useoutertheme{infolines}
+% \usecolortheme{beaver}
+
+
+\definecolor{darkred}{rgb}{0.8,0,0}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=darkred!80!gray}
+\setbeamercolor*{palette primary}{fg=darkred!60!black,bg=gray!30!white}
+\setbeamercolor*{palette secondary}{fg=darkred!70!black,bg=gray!15!white}
+\setbeamercolor*{palette tertiary}{bg=darkred!80!black,fg=gray!10!white}
+\setbeamercolor*{palette quaternary}{fg=darkred,bg=gray!5!white}
+
+\setbeamercolor*{sidebar}{fg=darkred,bg=gray!15!white}
+
+\setbeamercolor*{palette sidebar primary}{fg=darkred!10!black}
+\setbeamercolor*{palette sidebar secondary}{fg=white}
+\setbeamercolor*{palette sidebar tertiary}{fg=darkred!50!black}
+\setbeamercolor*{palette sidebar quaternary}{fg=gray!10!white}
+
+%\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor{titlelike}{parent=palette primary,fg=darkred}
+
+% --- HUST brand colors ---
+\definecolor{HUSTNavy}{RGB}{0,51,102}
+\definecolor{HUSTRed}{RGB}{192,32,52}
+\definecolor{HUSTBlack}{RGB}{0,0,0}
+
+\setbeamercolor{frametitle}{bg=HUSTNavy,fg=white}
+\setbeamercolor{frametitle right}{bg=gray!60!white}
+
+\makeatletter
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+  \begin{beamercolorbox}[
+      wd=\paperwidth,
+      ht=2.2ex,      % <-- vertical height above baseline
+      dp=1.5ex,      % <-- vertical depth below baseline
+      leftskip=1em,  % <-- left padding
+      rightskip=1em  % <-- right padding (only used if you add stuff on the right)
+    ]{frametitle}%
+    \usebeamerfont{frametitle}%
+    \strut\insertframetitle\strut%
+  \end{beamercolorbox}%
+}
+\makeatother
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+% --- Bottom footer + top bars (TikZ background canvas) ---
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+
+\setbeamertemplate{background canvas}{%
+  \begin{tikzpicture}[remember picture,overlay]
+
+    \fill[HUSTRed]
+      ($(current page.north west)+(0,-1.00cm)$) rectangle
+      ($(current page.north east)+(0,-1.07cm)$);
+
+    \coordinate (footerBase) at ($(current page.south west)+(0.1cm,0.1cm)$);
+
+    \node[anchor=south west] (hustlogo) at (footerBase) {%
+      \includegraphics[height=0.7cm]{assets/logo/01.png}%
+    };
+
+    \fill[HUSTRed]
+      ($(current page.south west)+(1.0cm,0.55cm)$) rectangle
+      ($(current page.south east)+(-0.2cm,0.58cm)$);
+
+  \end{tikzpicture}%
+}
+
+
+
+\setbeamerfont{block title}{size={}}
+\setbeamercolor{titlelike}{parent=structure,bg=white}
