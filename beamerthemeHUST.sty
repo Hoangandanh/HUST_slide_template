@@ -1,7 +1,44 @@
 \ProvidesPackage{beamerthemeHUST}
+% ==============================
+% Provide package options
+% ==============================
+\SetupKeyvalOptions{
+  family=template,
+  prefix=template@
+}
+\DeclareStringOption[01]{background}
+\DeclareStringOption[Red]{theme}
+\DeclareStringOption[169]{aspectratio}
+\ProcessKeyvalOptions*
+
 \useinnertheme[shadow=true]{rounded}
 % \useoutertheme{infolines}
 % \usecolortheme{beaver}
+
+\ifdefstring{\template@background}{logo}{
+  \def\slidebackground{assets/logo/01.pdf}
+  \newif\ifhustbyheight
+  \hustbyheighttrue    % hoặc \hustbyheightfalse để neo theo width
+}{
+  \ifdefstring{\template@background}{logowithtext}{
+    \def\slidebackground{assets/logo/02.pdf}
+    \newif\ifhustbyheight
+    \hustbyheighttrue    % hoặc \hustbyheightfalse để neo theo width
+  }{
+    \ifdefstring{\template@background}{hustwithtext}{
+      \def\slidebackground{assets/logo/12.pdf}
+      \newif\ifhustbyheight
+      \hustbyheightfalse    % hoặc \hustbyheightfalse để neo theo width
+    }{
+      \ifdefstring{\template@background}{hust}{
+        \def\slidebackground{assets/logo/16.pdf}
+        \newif\ifhustbyheight
+        \hustbyheightfalse    % hoặc \hustbyheightfalse để neo theo width
+      }
+      {}
+    }
+  }
+}
 
 
 \definecolor{darkred}{rgb}{0.8,0,0}
@@ -36,10 +73,10 @@
   \nointerlineskip%
   \begin{beamercolorbox}[
       wd=\paperwidth,
-      ht=2.2ex,      % <-- vertical height above baseline
-      dp=1.5ex,      % <-- vertical depth below baseline
-      leftskip=1em,  % <-- left padding
-      rightskip=1em  % <-- right padding (only used if you add stuff on the right)
+      ht=0.065\paperheight,      % <-- vertical height above baseline
+      dp=0.030\paperheight,      % <-- vertical depth below baseline
+      leftskip=0.020\paperwidth,  % <-- left padding
+      rightskip=0.020\paperwidth  % <-- right padding (only used if you add stuff on the right)
     ]{frametitle}%
     \usebeamerfont{frametitle}%
     \strut\insertframetitle\strut%
@@ -58,18 +95,47 @@
   \begin{tikzpicture}[remember picture,overlay]
 
     \fill[HUSTRed]
-      ($(current page.north west)+(0,-1.00cm)$) rectangle
-      ($(current page.north east)+(0,-1.07cm)$);
+      ($(current page.north west)+(0,-0.110\paperheight)$) rectangle
+      ($(current page.north east)+(0,-0.118\paperheight)$);
 
-    \coordinate (footerBase) at ($(current page.south west)+(0.1cm,0.1cm)$);
+    % \coordinate (footerBase) at ($(current page.south west)+(0.017\paperwidth,0.017\paperheight)$);
 
-    \node[anchor=south west] (hustlogo) at (footerBase) {%
-      \includegraphics[height=0.7cm]{assets/logo/01.png}%
-    };
+    % \node[anchor=south west] (hustlogo) at (footerBase) {%
+    %   % \includegraphics[height=0.069\paperheight][width=]{\slidebackground}% 01 02 12 16
+    %   \ifhustbyheight
+    %     \includegraphics[height=0.069\paperheight,keepaspectratio]{\slidebackground}%
+    %   \else
+    %     \includegraphics[width=0.12\paperwidth,keepaspectratio]{\slidebackground}%
+    %   \fi
+    % };
 
-    \fill[HUSTRed]
-      ($(current page.south west)+(1.0cm,0.55cm)$) rectangle
-      ($(current page.south east)+(-0.2cm,0.58cm)$);
+    % \fill[HUSTRed]
+    %   ($(hustlogo.south east)+(+0.010\paperwidth,0.053\paperheight)$) rectangle
+    %   ($(current page.south east)+(-0.025\paperwidth,0.067\paperheight)$);
+
+    % \fill[HUSTRed]
+    %   ($(current page.south west)+(0,0.069\paperheight)$) rectangle
+    %   ($(current page.south east)+(0,0.067\paperheight)$);
+
+% Dải đỏ (giữ nguyên)
+\pgfmathsetmacro{\barYtop}{0.069}   % giá trị lớn hơn là đỉnh
+\pgfmathsetmacro{\barYbot}{0.067}   % giá trị nhỏ hơn là đáy
+\pgfmathsetmacro{\barYmid}{(\barYtop+\barYbot)/2}
+
+\fill[HUSTRed]
+  ($(current page.south west)+(0,\barYtop*\paperheight)$) rectangle
+  ($(current page.south east)+(0,\barYbot*\paperheight)$);
+
+% Logo: tâm-chiều-cao trùng trung tuyến dải, mép trái cách lề 0.017\paperwidth
+\node[anchor=mid west, inner sep=0pt, outer sep=0pt] (hustlogo)
+  at ($(current page.south west)+(0.017\paperwidth,\barYmid*\paperheight)$) {%
+    \ifhustbyheight
+      \includegraphics[height=0.069\paperheight,keepaspectratio]{\slidebackground}%
+    \else
+      \includegraphics[width=0.12\paperwidth,keepaspectratio]{\slidebackground}%
+    \fi
+};
+
 
   \end{tikzpicture}%
 }

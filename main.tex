@@ -1,5 +1,5 @@
 \documentclass[aspectratio=169]{beamer}
-\usetheme{HUST} % <-- this matches beamerthemeHUST.sty
+\usetheme[theme=Blue,aspectratio=169,background=hust]{HUST} % <-- this matches beamerthemeHUST.sty
 
 % \usepackage[utf8]{vietnam}
 \usepackage[T5]{fontenc}
@@ -16,8 +16,8 @@
 
 
 
-\title{Requirement Analysis}
-\author{SoICT — HUST}
+\title{A long PRESENTATION TITLE mixing with lower and UPPER cases}
+\author{SoICT - HUST}
 \date{}
 
 \begin{document}
@@ -41,19 +41,21 @@
 \begin{frame}
   % place logo only on this frame
   \begin{tikzpicture}[remember picture,overlay]
-    \node[anchor=north west] at ($(current page.north west)+(0.6cm,-0.45cm)$) {%
-      \includegraphics[height=0.9cm]{assets/logo/04.png}%
+    \node[anchor=north west] at ($(current page.north west)+(0.35cm,-0.03\paperheight)$) {%
+      \includegraphics[height=0.136\paperheight]{assets/logo/04.png}%
     };
   \end{tikzpicture}
     %----------You can edit here----------
-    \placecontent{0.5cm}{3.2cm}{10cm}{
-        \color{hustred}\bfseries\fontsize{22pt}{26pt}\selectfont
-        PRESENTATION TITLE
+    \placecontent{0.5cm}{0.33\paperheight}{0.85\paperwidth}{
+        \color{hustred}\bfseries\fontsize{22pt}{30pt}\selectfont
+        \inserttitle
+        % Cấu trúc dữ liệu và Thuật toán
     }
-    \placecontent{0.5cm}{4.8cm}{10cm}{
+    % \placecontent{0.5cm}{0.48\paperheight}{10cm}{    % one-line title
+    \placecontent{0.5cm}{0.60\paperheight}{0.5\paperwidth}{    % two-line title
         \color{hustred}\fontsize{12pt}{14pt}\selectfont
         SUBTITLE. SUBTITLE. SUBTITLE.\\
-        SUBTITLE. SUBTITLE.
+        \insertauthor
     }
 \end{frame}
 }
@@ -61,7 +63,12 @@
 
 
 \begin{frame}{title}
-%   contents
+  contents
+\begin{itemize}
+  \item a
+  \item b
+  \item c
+\end{itemize}
 \end{frame}
 
 \begin{frame}
