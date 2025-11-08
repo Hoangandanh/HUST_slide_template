@@ -13,7 +13,7 @@
 }
 \DeclareStringOption[logo]{logo}
 \DeclareStringOption[blue]{theme}
-\DeclareStringOption[169]{aspectratio}
+\DeclareStringOption[auto]{aspectratio}
 \DeclareStringOption[pdf]{assetext}
 \ProcessKeyvalOptions*
 
@@ -24,6 +24,19 @@
 % \useoutertheme{infolines}
 % \usecolortheme{beaver}
 
+% Map aspectratio option -> folder suffix
+\newcommand*\HUSTAspectFolder{16x9} % default
+\ifdefstring{\template@aspectratio}{auto}{
+  \ifdefstring{\insertaspectratio}{169}{
+    \renewcommand*\HUSTAspectFolder{16x9}
+  }{}
+  \ifdefstring{\insertaspectratio}{43}{
+    \renewcommand*\HUSTAspectFolder{4x3}
+  }{}
+}{
+  \ifdefstring{\template@aspectratio}{169}{\renewcommand*\HUSTAspectFolder{16x9}}{}%
+  \ifdefstring{\template@aspectratio}{43}{\renewcommand*\HUSTAspectFolder{4x3}}{}%
+}
 
 % ==============================
 % Logo Configuration
@@ -128,11 +141,7 @@
   \renewcommand*\HUSTThemeFolder{red}%
 }{}
 
-% Map aspectratio option -> folder suffix
-\newcommand*\HUSTAspectFolder{16x9} % default
-\ifdefstring{\template@aspectratio}{169}{\renewcommand*\HUSTAspectFolder{16x9}}{}
-% \ifdefstring{\template@aspectratio}{1610}{\renewcommand*\HUSTAspectFolder{16x10}}{}
-\ifdefstring{\template@aspectratio}{43}{\renewcommand*\HUSTAspectFolder{4x3}}{}
+
 
 % --- Tạo full path từ tên file (ẩn cấu trúc assets/...) ---
 % #1 = filename, ví dụ "theme.pdf" hoặc "theme_hust.pdf"
@@ -318,7 +327,19 @@
   \end{tikzpicture}%
 }
 
-
+% \HUSTCornerImage[<height-fraction>][<x-offset>][<y-fraction>]{<file>}
+% - <height-fraction>: phần trăm theo \paperheight (mặc định 0.136)
+% - <x-offset>: dịch theo chiều ngang (mặc định 0.35cm, đơn vị tự do)
+% - <y-fraction>: phần trăm theo \paperheight, âm là đi xuống (mặc định -0.03)
+% - <file>: đường dẫn ảnh
+\NewDocumentCommand{\HUSTCornerImage}{ O{0.136} O{0.35cm} O{-0.03} m }{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west] at
+      ($(current page.north west)+(#2,#3\paperheight)$) {%
+        \includegraphics[height=#1\paperheight]{#4}%
+      };
+  \end{tikzpicture}%
+}
 
 \setbeamerfont{block title}{size={}}
 \setbeamercolor{titlelike}{parent=structure,bg=white}

@@ -1,5 +1,6 @@
-\documentclass[aspectratio=43]{beamer}
-\usetheme[theme=red,aspectratio=43,logo=logowithtextvi]{HUST} % <-- this matches beamerthemeHUST.sty
+% Supported aspectratio 43|169, default is 43
+\documentclass[aspectratio=169]{beamer}
+\usetheme[theme=blue,logo=logowithtextvi]{HUST} % <-- this matches beamerthemeHUST.sty
 
 % \usepackage[utf8]{vietnam}
 \usepackage[T5]{fontenc}
@@ -28,23 +29,21 @@
 {\HUSTUseBackgroundAsset{onelove.pdf}
 \begin{frame}
   % place logo only on this frame
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[anchor=north west] at ($(current page.north west)+(0.35cm,-0.03\paperheight)$) {%
-      \includegraphics[height=0.136\paperheight]{assets/logo/04.png}%
-    };
-  \end{tikzpicture}
-    %----------You can edit here----------
-    \placecontent{0.5cm}{0.33\paperheight}{0.85\paperwidth}{
-        \color{HUSTRed}\bfseries\fontsize{22pt}{30pt}\selectfont
-        \inserttitle
-        % Cấu trúc dữ liệu và Thuật toán
-    }
-    % \placecontent{0.5cm}{0.48\paperheight}{10cm}{    % one-line title
-    \placecontent{0.5cm}{0.60\paperheight}{0.5\paperwidth}{    % two-line title
-        \color{hustred}\fontsize{12pt}{14pt}\selectfont
-        SUBTITLE. SUBTITLE. SUBTITLE.\\
-        \insertauthor
-    }
+  \HUSTCornerImage[0.18][0.6cm][-0.04]{assets/logo/04.png}
+
+  %----------You can edit here----------
+  \placecontent{0.5cm}{0.33\paperheight}{0.85\paperwidth}{
+      \color{HUSTRed}\bfseries\fontsize{22pt}{30pt}\selectfont
+      \inserttitle
+      % \show{templateaspectratio = \the\template@aspectratio}
+      % Cấu trúc dữ liệu và Thuật toán
+  }
+  % \placecontent{0.5cm}{0.48\paperheight}{10cm}{    % one-line title
+  \placecontent{0.5cm}{0.60\paperheight}{0.5\paperwidth}{    % two-line title
+      \color{hustred}\fontsize{12pt}{14pt}\selectfont
+      SUBTITLE. SUBTITLE. SUBTITLE.\\
+      \insertauthor
+  }
 \end{frame}
 }
 
