@@ -1,124 +1,24 @@
-% Supported aspectratio 43|169, default is 43
-\documentclass[aspectratio=43]{beamer}
-\usetheme[theme=blue,logo=logowithtextvi]{HUST} % <-- this matches beamerthemeHUST.sty
+\documentclass[aspectratio=169]{beamer}
+\usetheme[theme=blue,logo=logowithtexten]{HUST}
 
-% \usepackage[utf8]{vietnam}
-\usepackage[T5]{fontenc}
-% \setmainfont{assets/fonts/LATO-BLACK.TTF}
-
-\newcommand{\placecontent}[4]{%
-  \tikz[remember picture,overlay]
-    \node[anchor=north west]
-      at ([xshift=#1,yshift=-#2]current page.north west)
-      {\parbox{#3}{#4}};
-}
-
-
-\title{A long PRESENTATION TITLE mixing with lower and UPPER cases}
-\author{SoICT - HUST}
-\date{}
+\title{Introduction to Data Structures}
+\author{Dr. Nguyen Van A}
+\institute{Hanoi University of Science and Technology}
+\date{\today}
 
 \begin{document}
 
 \HUSTInsertBrandSlide
 \HUSTInsertThemeSlide
 
-% Title slide - place it here for your customization
-{\HUSTUseBackgroundAsset{onelove.pdf}
-\begin{frame}
-  \ifdefstring{\insertaspectratio}{169}{
-    \HUSTCornerImage{assets/logo/04.pdf}
-
-    %----------You can edit here----------
-    \placecontent{0.5cm}{0.33\paperheight}{0.85\paperwidth}{
-        \color{\HUSTFrameTitleTextColor}\bfseries\fontsize{22pt}{30pt}\selectfont
-        \inserttitle
-    }
-    % \placecontent{0.5cm}{0.48\paperheight}{10cm}{    % one-line title
-    \placecontent{0.5cm}{0.60\paperheight}{0.5\paperwidth}{    % two-line title
-        \color{\HUSTFrameTitleTextColor}\fontsize{12pt}{14pt}\selectfont
-        SUBTITLE. SUBTITLE. SUBTITLE.\\
-        \insertauthor
-    }
-  }{}
-  \ifdefstring{\insertaspectratio}{43}{
-    \HUSTCornerImage[0.1][0.35cm][-0.03]{assets/logo/04.pdf}
-
-    %----------You can edit here----------
-    \placecontent{0.5cm}{0.33\paperheight}{0.80\paperwidth}{
-        \color{\HUSTFrameTitleTextColor}\bfseries\fontsize{18pt}{22pt}\selectfont
-        \inserttitle
-    }
-    % \placecontent{0.5cm}{0.48\paperheight}{10cm}{    % one-line title
-    \placecontent{0.5cm}{0.60\paperheight}{0.5\paperwidth}{    % two-line title
-        \color{\HUSTFrameTitleTextColor}\fontsize{12pt}{14pt}\selectfont
-        SUBTITLE. SUBTITLE. SUBTITLE.\\
-        \insertauthor
-    }
-  }{}
-\end{frame}
-}
-
-% Display the tableofcontents before a section
-\AtBeginSection[]
-{
-    \begin{frame}<beamer>
-        \frametitle{Outline}
-        \tableofcontents[currentsection]
-    \end{frame}
-}
-
-\section{Section 1}
-\begin{frame}{title}
-Nội dung slide
-\begin{itemize}
-  \item Nội dung 1
-  \item Nội dung 2
-  \item Nội dung 3
-\end{itemize}
+\begin{frame}{Overview}
+  \begin{itemize}
+    \item Professional and consistent academic styling
+    \item Automated logo and bar positioning
+    \item Full control over color and layout
+  \end{itemize}
 \end{frame}
 
-\section{Section 2}
-\begin{frame}{title}
-Nội dung slide
-\begin{itemize}
-  \item Nội dung 1
-  \item Nội dung 2
-  \item Nội dung 3
-\end{itemize}
-\end{frame}
-
-{\HUSTUseBackgroundAsset{theme_hust_oneside.pdf}
-\begin{frame}
-  \ifdefstring{\insertaspectratio}{169}{
-    \placecontent{0.355\paperwidth}{0.410\paperheight}{0.640\paperwidth}{
-        \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
-        THANK YOU!
-    }
-  }{}
-  \ifdefstring{\insertaspectratio}{43}{
-    \placecontent{0.355\paperwidth}{0.440\paperheight}{0.640\paperwidth}{
-        \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
-        THANK YOU!
-    }
-  }{}
-\end{frame}
-}
-{\HUSTUseBackgroundAsset{theme_hust_oneside.pdf}
-\begin{frame}
-  \ifdefstring{\insertaspectratio}{169}{
-    \placecontent{0.355\paperwidth}{0.320\paperheight}{0.640\paperwidth}{
-        \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
-        CẢM ƠN \\ĐÃ LẮNG NGHE!
-    }
-  }{}
-  \ifdefstring{\insertaspectratio}{43}{
-    \placecontent{0.355\paperwidth}{0.350\paperheight}{0.640\paperwidth}{
-        \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
-        CẢM ƠN \\ĐÃ LẮNG NGHE!
-    }
-  }{}
-\end{frame}
-}
+\HUSTInsertOnesideSlide
 
 \end{document}
