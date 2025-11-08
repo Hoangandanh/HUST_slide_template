@@ -1,5 +1,5 @@
 \documentclass[aspectratio=43]{beamer}
-\usetheme[theme=Blue,aspectratio=43,background=logowithtextvi]{HUST} % <-- this matches beamerthemeHUST.sty
+\usetheme[theme=red,aspectratio=43,logo=logowithtextvi]{HUST} % <-- this matches beamerthemeHUST.sty
 
 % \usepackage[utf8]{vietnam}
 \usepackage[T5]{fontenc}
@@ -21,22 +21,11 @@
 
 \begin{document}
 
-{
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{assets/blue_4x3/theme_hust.pdf}}
-\begin{frame}
-%   \titlepage
-\end{frame}
-}
+\HUSTInsertBrandSlide
+\HUSTInsertThemeSlide
 
-{
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{assets/blue_4x3/theme.pdf}}
-\begin{frame}
-%   \titlepage
-\end{frame}
-}
-
-{
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{assets/blue_4x3/onelove.pdf}}
+% Title slide 
+{\HUSTUseBackgroundAsset{onelove.pdf}
 \begin{frame}
   % place logo only on this frame
   \begin{tikzpicture}[remember picture,overlay]
@@ -46,7 +35,7 @@
   \end{tikzpicture}
     %----------You can edit here----------
     \placecontent{0.5cm}{0.33\paperheight}{0.85\paperwidth}{
-        \color{hustred}\bfseries\fontsize{22pt}{30pt}\selectfont
+        \color{HUSTRed}\bfseries\fontsize{22pt}{30pt}\selectfont
         \inserttitle
         % Cấu trúc dữ liệu và Thuật toán
     }
@@ -59,21 +48,49 @@
 \end{frame}
 }
 
-
-
-\begin{frame}{title}
-Đặc tả file source trong C
-\end{frame}
-
-\begin{frame}
-%   contents
-\end{frame}
-
-
+% Display the tableofcontents before a section
+\AtBeginSection[]
 {
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{assets/blue_4x3/theme_hust_oneside.pdf}}
+    \begin{frame}<beamer>
+        \frametitle{Outline}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\section{Section 1}
+\begin{frame}{title}
+Nội dung slide
+\begin{itemize}
+  \item Nội dung 1
+  \item Nội dung 2
+  \item Nội dung 3
+\end{itemize}
+\end{frame}
+
+\section{Section 2}
+\begin{frame}{title}
+Nội dung slide
+\begin{itemize}
+  \item Nội dung 1
+  \item Nội dung 2
+  \item Nội dung 3
+\end{itemize}
+\end{frame}
+
+{\HUSTUseBackgroundAsset{theme_hust_oneside.pdf}
 \begin{frame}
-%   \titlepage
+  \placecontent{0.355\paperwidth}{0.410\paperheight}{0.640\paperwidth}{
+      \color{hustred}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
+      THANK YOU!
+  }
+\end{frame}
+}
+{\HUSTUseBackgroundAsset{theme_hust_oneside.pdf}
+\begin{frame}
+  \placecontent{0.355\paperwidth}{0.320\paperheight}{0.640\paperwidth}{
+      \color{hustred}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
+      CẢM ƠN \\ĐÃ LẮNG NGHE!
+  }
 \end{frame}
 }
 
