@@ -1,6 +1,6 @@
 % Supported aspectratio 43|169, default is 43
-\documentclass[aspectratio=169]{beamer}
-\usetheme[theme=red,logo=logowithtextvi]{HUST} % <-- this matches beamerthemeHUST.sty
+\documentclass[aspectratio=43]{beamer}
+\usetheme[theme=blue,logo=logowithtextvi]{HUST} % <-- this matches beamerthemeHUST.sty
 
 % \usepackage[utf8]{vietnam}
 \usepackage[T5]{fontenc}
@@ -90,18 +90,34 @@ Nội dung slide
 
 {\HUSTUseBackgroundAsset{theme_hust_oneside.pdf}
 \begin{frame}
-  \placecontent{0.355\paperwidth}{0.410\paperheight}{0.640\paperwidth}{
-      \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
-      THANK YOU!
-  }
+  \ifdefstring{\insertaspectratio}{169}{
+    \placecontent{0.355\paperwidth}{0.410\paperheight}{0.640\paperwidth}{
+        \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
+        THANK YOU!
+    }
+  }{}
+  \ifdefstring{\insertaspectratio}{43}{
+    \placecontent{0.355\paperwidth}{0.440\paperheight}{0.640\paperwidth}{
+        \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
+        THANK YOU!
+    }
+  }{}
 \end{frame}
 }
 {\HUSTUseBackgroundAsset{theme_hust_oneside.pdf}
 \begin{frame}
-  \placecontent{0.355\paperwidth}{0.320\paperheight}{0.640\paperwidth}{
-      \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
-      CẢM ƠN \\ĐÃ LẮNG NGHE!
-  }
+  \ifdefstring{\insertaspectratio}{169}{
+    \placecontent{0.355\paperwidth}{0.320\paperheight}{0.640\paperwidth}{
+        \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
+        CẢM ƠN \\ĐÃ LẮNG NGHE!
+    }
+  }{}
+  \ifdefstring{\insertaspectratio}{43}{
+    \placecontent{0.355\paperwidth}{0.350\paperheight}{0.640\paperwidth}{
+        \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
+        CẢM ƠN \\ĐÃ LẮNG NGHE!
+    }
+  }{}
 \end{frame}
 }
 
