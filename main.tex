@@ -1,6 +1,6 @@
 % Supported aspectratio 43|169, default is 43
 \documentclass[aspectratio=169]{beamer}
-\usetheme[theme=blue,logo=logowithtextvi]{HUST} % <-- this matches beamerthemeHUST.sty
+\usetheme[theme=red,logo=logowithtextvi]{HUST} % <-- this matches beamerthemeHUST.sty
 
 % \usepackage[utf8]{vietnam}
 \usepackage[T5]{fontenc}
@@ -12,8 +12,6 @@
       at ([xshift=#1,yshift=-#2]current page.north west)
       {\parbox{#3}{#4}};
 }
-\definecolor{hustred}{RGB}{190,0,0}
-\definecolor{hustblue}{RGB}{0,0,190}
 
 
 \title{A long PRESENTATION TITLE mixing with lower and UPPER cases}
@@ -25,25 +23,39 @@
 \HUSTInsertBrandSlide
 \HUSTInsertThemeSlide
 
-% Title slide 
+% Title slide - place it here for your customization
 {\HUSTUseBackgroundAsset{onelove.pdf}
 \begin{frame}
-  % place logo only on this frame
-  \HUSTCornerImage[0.18][0.6cm][-0.04]{assets/logo/04.png}
+  \ifdefstring{\insertaspectratio}{169}{
+    \HUSTCornerImage{assets/logo/04.pdf}
 
-  %----------You can edit here----------
-  \placecontent{0.5cm}{0.33\paperheight}{0.85\paperwidth}{
-      \color{HUSTRed}\bfseries\fontsize{22pt}{30pt}\selectfont
-      \inserttitle
-      % \show{templateaspectratio = \the\template@aspectratio}
-      % Cấu trúc dữ liệu và Thuật toán
-  }
-  % \placecontent{0.5cm}{0.48\paperheight}{10cm}{    % one-line title
-  \placecontent{0.5cm}{0.60\paperheight}{0.5\paperwidth}{    % two-line title
-      \color{hustred}\fontsize{12pt}{14pt}\selectfont
-      SUBTITLE. SUBTITLE. SUBTITLE.\\
-      \insertauthor
-  }
+    %----------You can edit here----------
+    \placecontent{0.5cm}{0.33\paperheight}{0.85\paperwidth}{
+        \color{\HUSTFrameTitleTextColor}\bfseries\fontsize{22pt}{30pt}\selectfont
+        \inserttitle
+    }
+    % \placecontent{0.5cm}{0.48\paperheight}{10cm}{    % one-line title
+    \placecontent{0.5cm}{0.60\paperheight}{0.5\paperwidth}{    % two-line title
+        \color{\HUSTFrameTitleTextColor}\fontsize{12pt}{14pt}\selectfont
+        SUBTITLE. SUBTITLE. SUBTITLE.\\
+        \insertauthor
+    }
+  }{}
+  \ifdefstring{\insertaspectratio}{43}{
+    \HUSTCornerImage[0.1][0.35cm][-0.03]{assets/logo/04.pdf}
+
+    %----------You can edit here----------
+    \placecontent{0.5cm}{0.33\paperheight}{0.80\paperwidth}{
+        \color{\HUSTFrameTitleTextColor}\bfseries\fontsize{18pt}{22pt}\selectfont
+        \inserttitle
+    }
+    % \placecontent{0.5cm}{0.48\paperheight}{10cm}{    % one-line title
+    \placecontent{0.5cm}{0.60\paperheight}{0.5\paperwidth}{    % two-line title
+        \color{\HUSTFrameTitleTextColor}\fontsize{12pt}{14pt}\selectfont
+        SUBTITLE. SUBTITLE. SUBTITLE.\\
+        \insertauthor
+    }
+  }{}
 \end{frame}
 }
 
@@ -79,7 +91,7 @@ Nội dung slide
 {\HUSTUseBackgroundAsset{theme_hust_oneside.pdf}
 \begin{frame}
   \placecontent{0.355\paperwidth}{0.410\paperheight}{0.640\paperwidth}{
-      \color{hustred}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
+      \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
       THANK YOU!
   }
 \end{frame}
@@ -87,7 +99,7 @@ Nội dung slide
 {\HUSTUseBackgroundAsset{theme_hust_oneside.pdf}
 \begin{frame}
   \placecontent{0.355\paperwidth}{0.320\paperheight}{0.640\paperwidth}{
-      \color{hustred}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
+      \color{HUSTRed}\bfseries\fontsize{28pt}{36pt}\selectfont\centering
       CẢM ƠN \\ĐÃ LẮNG NGHE!
   }
 \end{frame}

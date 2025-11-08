@@ -232,14 +232,16 @@
 \setbeamercolor{titlelike}{parent=palette primary,fg=darkred}
 
 % --- HUST brand colors ---
-\definecolor{HUSTNavy}{RGB}{0,51,102}
+\definecolor{HUSTBlue}{RGB}{0,51,102}
 \definecolor{HUSTRed}{RGB}{192,32,52}
 \definecolor{HUSTYellow}{RGB}{229,156,10}
 \definecolor{HUSTBlack}{RGB}{0,0,0}
 
-\newcommand*\HUSTFrameTitleBG{HUSTNavy}
+\newcommand*\HUSTFrameTitleBG{HUSTBlue}
+\newcommand*\HUSTFrameTitleTextColor{HUSTRed}
 \ifdefstring{\template@theme}{red}{%
   \renewcommand*\HUSTFrameTitleBG{HUSTRed}%
+  \renewcommand*\HUSTFrameTitleTextColor{HUSTBlue}%
 }{}
 
 \setbeamercolor{frametitle}{bg=\HUSTFrameTitleBG,fg=white}
