@@ -1,10 +1,19 @@
 % Supported aspectratio 43|169, default is 43
-\documentclass[aspectratio=43]{beamer}
+\documentclass[aspectratio=169]{beamer}
 \usetheme[theme=blue,logo=logowithtextvi]{HUST} % <-- this matches beamerthemeHUST.sty
 
 % \usepackage[utf8]{vietnam}
 \usepackage[T5]{fontenc}
 % \setmainfont{assets/fonts/LATO-BLACK.TTF}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\tcbuselibrary{listingsutf8}
+
+
+
 
 \newcommand{\placecontent}[4]{%
   \tikz[remember picture,overlay]
@@ -14,10 +23,13 @@
 }
 
 
-\title{A long PRESENTATION TITLE mixing with lower and UPPER cases}
+\title{CẤU TRÚC DỮ LIỆU VÀ THUẬT TOÁN}
 \author{SoICT - HUST}
 \date{}
-
+\setbeamertemplate{footline}{%
+  \hfill%
+  \insertframenumber\hspace{0.5cm}\vspace{0.3cm}
+  }
 \begin{document}
 
 \HUSTInsertBrandSlide
@@ -37,7 +49,7 @@
     % \placecontent{0.5cm}{0.48\paperheight}{10cm}{    % one-line title
     \placecontent{0.5cm}{0.60\paperheight}{0.5\paperwidth}{    % two-line title
         \color{\HUSTFrameTitleTextColor}\fontsize{12pt}{14pt}\selectfont
-        SUBTITLE. SUBTITLE. SUBTITLE.\\
+        TUẦN 1 : CÁC KHÁI NIỆM CƠ BẢN\\
         \insertauthor
     }
   }{}
@@ -52,7 +64,7 @@
     % \placecontent{0.5cm}{0.48\paperheight}{10cm}{    % one-line title
     \placecontent{0.5cm}{0.60\paperheight}{0.5\paperwidth}{    % two-line title
         \color{\HUSTFrameTitleTextColor}\fontsize{12pt}{14pt}\selectfont
-        SUBTITLE. SUBTITLE. SUBTITLE.\\
+        TUẦN 1 : CÁC KHÁI NIỆM CƠ BẢN\\
         \insertauthor
     }
   }{}
@@ -63,13 +75,107 @@
 \AtBeginSection[]
 {
     \begin{frame}<beamer>
-        \frametitle{Outline}
+        \frametitle{MỤC LỤC}
         \tableofcontents[currentsection]
     \end{frame}
 }
 
-\section{Section 1}
-\begin{frame}{title}
+\begin{frame}{MỤC TIÊU}
+    \hspace{1.5cm}\textit{\color{HUSTBlue}Sau bài học này, người học có thể:}\vspace{0.5cm}
+
+    \begin{itemize}
+        \item 1. Hiểu được một số \textcolor{HUSTRed}{khái niệm cơ bản về thuật toán}
+        \item 2. Biết \textcolor{HUSTRed}{ký hiệu tiệm cận} dùng để đánh giá độ phức tạp thuật toán
+        \item 3. Biết cách \textcolor{HUSTRed}{phân tích độ phức tạp của thuật toán}
+    \end{itemize}
+\end{frame}
+
+
+\section{Ví dụ minh họa}
+\begin{frame}{1. Ví dụ minh họa}
+  
+  \begin{itemize}[label={\tiny$\blacksquare$}] 
+    \item {\color{HUSTBlue}Bài toán tìm dãy con lớn nhất:}
+      \begin{itemize}[label={\tiny$\bullet$}]
+        \item Cho dãy số gồm $n$ số: $a_0, a_1, a_2, ..., a_{n-1}$
+
+        \item Dãy gồm liên tiếp các số $a_i, a_{i+1},\ldots,a_j$ với $0 \leq i \leq j \leq n-1$ được gọi là 
+          \textcolor{HUSTYellow}{dãy con} của dãy đã cho và $\sum_{k=i}^j a_k$ được gọi là trọng lượng của dãy con này
+        \item \color{HUSTYellow}\textbf{Hãy tìm trọng lượng lớn nhất của dãy con, tức là tìm cực đại giá trị} $\sum_{k=i}^j a_k$ . Ta gọi dãy con có trọng lượng lớn nhất là \textbf{dãy con lớn nhất.}
+    \end{itemize}
+    \pause
+  \item \textbf{Ví dụ:} Cho dãy số $-2, \textcolor{HUSTYellow}{11, -4, 13}, -5, 2$ thì cần đưa ra câu trả lời là 20 (dãy con lớn nhất là 11, -4, 13 với giá trị $= 11 + (-4) + 13 = 20$)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{1. Ví dụ minh họa}
+  \begin{itemize}[label={\tiny$\blacksquare$}]
+    \item<1-> {\color{HUSTBlue}Cách 1: Duyệt toàn bộ}
+      \begin{itemize}[label={\tiny$\bullet$}]
+        \item<1-> Duyệt tất cả các dãy con có thể có của dãy đã cho:
+          \textcolor{HUSTYellow}{$a_i, a_{i+1},\ldots,a_j$ với $0 \leq i \leq j \leq n-1$,}
+          và tính tổng của mỗi dãy con để tìm ra trọng lượng lớn nhất.
+      \end{itemize}
+  \end{itemize}
+
+\begin{tcolorbox}[colback=gray!10, colframe=black, title={}]
+\begin{lstlisting}[language=C, basicstyle=\ttfamily\footnotesize, breaklines=true]
+int maxSum = a[0];
+for (int i = 0; i <= n-1; i++) {
+    for (int j = i; j <= n-1; j++) {
+        int sum = 0;
+        for (int k = i; k <= j; k++)
+            sum += a[k];
+        if (sum > maxSum) maxSum = sum;
+    }
+}
+\end{lstlisting}
+\end{tcolorbox}
+\end{frame}
+  
+\begin{frame}[fragile]{1. Ví dụ minh họa}
+\begin{itemize}
+    \item Cách 1: Duyệt toàn bộ
+    \begin{itemize}
+        \item Duyệt tất cả các dãy con có thể có của dãy đã cho: $a_i, a_{i+1}, ..., a_j$ với $0 \leq i \leq j \leq n-1$, và tính tổng của mỗi dãy con để tìm ra trọng lượng lớn nhất.
+        \item \textbf{Phân tích thuật toán:} Ta sẽ tính số lượng phép cộng mà thuật toán phải thực hiện, tức là đếm xem dòng lệnh \texttt{\textcolor{HUSTYellow}{sum += a[k]}} phải thực hiện bao nhiêu lần. Số lượng phép cộng là:
+    \end{itemize}
+\end{itemize}
+
+\vspace{0.01cm}
+
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.5\textwidth}
+        \begin{tcolorbox}[colback=gray!10, colframe=black, boxsep=1pt, left=1pt, right=1pt, top=1pt, bottom=1pt, halign=left]
+            \tiny
+\begin{lstlisting}[language=C, basicstyle=\ttfamily\tiny, breaklines=true]
+int maxSum = a[0];
+for (int i = 0; i<=n-1; i++) {
+for (int j = i; j<=n-1; j++) {
+int sum = 0;
+for (int k=i; k<=j; k++) sum += a[k];
+if (sum > maxSum) maxSum = sum;
+    }
+}
+\end{lstlisting}
+        \end{tcolorbox}
+    \end{column}
+
+    \begin{column}{0.5\textwidth}
+        \scriptsize
+        \begin{align*}
+            \sum_{i=1}^n \sum_{j=i}^n (j-i+1)
+            &= \sum_{i=1}^n [1 + 2 + \cdots + (n-i+1)] \\
+            &= \sum_{i=1}^n \frac{(n-i+1)(n-i+2)}{2} \\
+            &= \frac{n(n+1)(n+2)}{6}
+        \end{align*}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\section{Một số khái niệm cơ bản về thuật toán}
+\begin{frame}{2. Một số khái niệm cơ bản về thuật toán}
 Nội dung slide
 \begin{itemize}
   \item Nội dung 1
@@ -78,8 +184,18 @@ Nội dung slide
 \end{itemize}
 \end{frame}
 
-\section{Section 2}
-\begin{frame}{title}
+\section{Ký hiệu tiệm cận}
+\begin{frame}{3. Ký hiệu tiệm cận}
+Nội dung slide
+\begin{itemize}
+  \item Nội dung 1
+  \item Nội dung 2
+  \item Nội dung 3
+\end{itemize}
+\end{frame}
+
+\section{Kỹ thuật phân tích thuật toán}
+\begin{frame}{4. Kỹ thuật phân tích thuật toán}
 Nội dung slide
 \begin{itemize}
   \item Nội dung 1

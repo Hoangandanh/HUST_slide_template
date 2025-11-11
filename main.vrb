@@ -1,0 +1,38 @@
+\frametitle{1. Ví dụ minh họa}
+\begin{itemize}
+    \item Cách 1: Duyệt toàn bộ
+    \begin{itemize}
+        \item Duyệt tất cả các dãy con có thể có của dãy đã cho: $a_i, a_{i+1}, ..., a_j$ với $0 \leq i \leq j \leq n-1$, và tính tổng của mỗi dãy con để tìm ra trọng lượng lớn nhất.
+        \item \textbf{Phân tích thuật toán:} Ta sẽ tính số lượng phép cộng mà thuật toán phải thực hiện, tức là đếm xem dòng lệnh \texttt{\textcolor{HUSTYellow}{sum += a[k]}} phải thực hiện bao nhiêu lần. Số lượng phép cộng là:
+    \end{itemize}
+\end{itemize}
+
+\vspace{0.01cm}
+
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.5\textwidth}
+        \begin{tcolorbox}[colback=gray!10, colframe=black, boxsep=1pt, left=1pt, right=1pt, top=1pt, bottom=1pt, halign=left]
+            \tiny
+\begin{lstlisting}[language=C, basicstyle=\ttfamily\tiny, breaklines=true]
+int maxSum = a[0];
+for (int i = 0; i<=n-1; i++) {
+for (int j = i; j<=n-1; j++) {
+int sum = 0;
+for (int k=i; k<=j; k++) sum += a[k];
+if (sum > maxSum) maxSum = sum;
+    }
+}
+\end{lstlisting}
+        \end{tcolorbox}
+    \end{column}
+
+    \begin{column}{0.5\textwidth}
+        \scriptsize
+        \begin{align*}
+            \sum_{i=1}^n \sum_{j=i}^n (j-i+1)
+            &= \sum_{i=1}^n [1 + 2 + \cdots + (n-i+1)] \\
+            &= \sum_{i=1}^n \frac{(n-i+1)(n-i+2)}{2} \\
+            &= \frac{n(n+1)(n+2)}{6}
+        \end{align*}
+    \end{column}
+\end{columns}

@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Ví dụ minh họa}{5}{0}{1}
+\beamer@sectionintoc {2}{Một số khái niệm cơ bản về thuật toán}{10}{0}{2}
+\beamer@sectionintoc {3}{Ký hiệu tiệm cận}{12}{0}{3}
+\beamer@sectionintoc {4}{Kỹ thuật phân tích thuật toán}{14}{0}{4}
