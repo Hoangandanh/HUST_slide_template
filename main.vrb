@@ -1,38 +1,63 @@
 \frametitle{1. Ví dụ minh họa}
-\begin{itemize}
-    \item Cách 1: Duyệt toàn bộ
-    \begin{itemize}
-        \item Duyệt tất cả các dãy con có thể có của dãy đã cho: $a_i, a_{i+1}, ..., a_j$ với $0 \leq i \leq j \leq n-1$, và tính tổng của mỗi dãy con để tìm ra trọng lượng lớn nhất.
-        \item \textbf{Phân tích thuật toán:} Ta sẽ tính số lượng phép cộng mà thuật toán phải thực hiện, tức là đếm xem dòng lệnh \texttt{\textcolor{HUSTYellow}{sum += a[k]}} phải thực hiện bao nhiêu lần. Số lượng phép cộng là:
-    \end{itemize}
-\end{itemize}
+\color{HUSTRed}\large
+        \[
+        \sum_{k=i}^j a[k] = a[j] + \sum_{k=i}^{j-1} a[k]
+        \]
+  \begin{center}
+    \begin{tikzpicture}
+    \node (X1) at (-4,0) {};
+    \node (X2) at (-3,0) {};
+    \node (X3) at (-1,0) {};
+    \node (X4) at (-0,0) {};
 
-\vspace{0.01cm}
-
-\begin{columns}[T,onlytextwidth]
-    \begin{column}{0.5\textwidth}
-        \begin{tcolorbox}[colback=gray!10, colframe=black, boxsep=1pt, left=1pt, right=1pt, top=1pt, bottom=1pt, halign=left]
+    \draw [decorate, decoration={brace,amplitude=7pt,mirror}, blue]
+        (X1.north west) -- (X2.north east) node[midway, below=7pt, black,xshift=-40pt] {\scriptsize Tổng các phần tử từ i đến j};
+    \draw [decorate, decoration={brace,amplitude=7pt,mirror}, blue]
+        (X3.north west) -- (X4.north east) node[midway, below=7pt, black,xshift=40pt] {\scriptsize Tổng các phần tử từ i đến j-1};
+    \end{tikzpicture}
+  \end{center}
+\vspace{-1em}
+\begin{center}
+\begin{tikzpicture}
+  \node[inner sep=0pt] (box1) at (0,0) {
+  % Node đầu là bảng code 1
+    %C code1
+    \begin{minipage}{0.42\textwidth}
+        \begin{tcolorbox}[colback=gray!10, colframe=black, boxsep=0.1pt, left=0.1pt, right=0.1pt, top=0.1pt, bottom=0.1pt]
             \tiny
-\begin{lstlisting}[language=C, basicstyle=\ttfamily\tiny, breaklines=true]
+\begin{lstlisting}[language=C, basicstyle=\ttfamily\tiny\color{HUSTBlue}, breaklines=true ]
 int maxSum = a[0];
-for (int i = 0; i<=n-1; i++) {
-for (int j = i; j<=n-1; j++) {
-int sum = 0;
-for (int k=i; k<=j; k++) sum += a[k];
-if (sum > maxSum) maxSum = sum;
-    }
+for (int i=0; i<=n-1; i++) {
+  for (int j=i; j<=n-1; j++) {
+    int sum = 0;
+    for (int k=i; k<=j; k++) sum += a[k];
+    if (sum > maxSum) maxSum = sum;
+  }
 }
-\end{lstlisting}
-        \end{tcolorbox}
-    \end{column}
+        \end{lstlisting}
+      \end{tcolorbox}
+    \end{minipage}
+};
 
-    \begin{column}{0.5\textwidth}
-        \scriptsize
-        \begin{align*}
-            \sum_{i=1}^n \sum_{j=i}^n (j-i+1)
-            &= \sum_{i=1}^n [1 + 2 + \cdots + (n-i+1)] \\
-            &= \sum_{i=1}^n \frac{(n-i+1)(n-i+2)}{2} \\
-            &= \frac{n(n+1)(n+2)}{6}
-        \end{align*}
-    \end{column}
-\end{columns}
+    %C code 2
+    \node[inner sep=0pt] (box2) at (6.5,0) {
+    \begin{minipage}{0.4\textwidth}
+        \begin{tcolorbox}[colback=gray!10, colframe=black, boxsep=0.1pt, left=0.1pt, right=0.1pt, top=0.1pt, bottom=0.1pt]
+            \tiny
+\begin{lstlisting}[language=C, basicstyle=\ttfamily\tiny\color{HUSTBlue}, breaklines=true]
+int maxSum = a[0];
+for (int i=0; i<=n-1; i++) {
+  int sum = 0;
+  for (int j=i; j<=n-1; j++) {
+    sum += a[j];
+    if (sum > maxSum) maxSum = sum;
+  }
+}
+        \end{lstlisting}
+      \end{tcolorbox}
+\end{minipage}
+};
+  \draw[line width=3mm ,-{Latex[length=8pt, width=14pt]}, orange]
+    ([xshift=0.05cm]box1.east)-- ([xshift=-0.05cm]box2.west);
+\end{tikzpicture}
+\end{center}
